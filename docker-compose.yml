@@ -1,4 +1,4 @@
-ersion: '2'
+version: '2'
 
 networks:
   graylog.net:
@@ -15,7 +15,7 @@ services:
     container_name: mongo
     hostname: mongo
     environment:
-      - TZ=Europe/Amsterdam
+      - "TZ=Europe/Amsterdam"
     volumes:
       - graylog.data.mongo:/data/db
     networks:
@@ -36,7 +36,7 @@ services:
       - http.host=0.0.0.0
       - transport.host=localhost
       - network.host=0.0.0.0
-      - TZ=Europe/Amsterdam
+      - "TZ=Europe/Amsterdam"
       - cluster.name=graylog
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -58,10 +58,11 @@ services:
     image: graylog/graylog:2.4
     hostname: graylog
     environment:
-      - TZ=Europe/Amsterdam
+      - "TZ=Europe/Amsterdam"
       - GRAYLOG_PASSWORD_SECRET=somepasswordpepper
       - GRAYLOG_ROOT_PASSWORD_SHA2=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
       - GRAYLOG_WEB_ENDPOINT_URI=http://melle4.synology.me:9000/api
+      - GRAYLOG_ROOT_TIMEZONE= Europe/Amsterdam
     ports:
       - 9000:9000
       # Syslog UDP
@@ -77,3 +78,4 @@ services:
       - elasticsearch
     networks:
       - graylog.net
+
